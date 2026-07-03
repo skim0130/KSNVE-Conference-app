@@ -100,7 +100,7 @@ export default function Home() {
   return <main className="shell app-shell"><Header/>
     {tab === 'today' && <section className="today-dashboard">
       <div className="today-greeting"><div><span>VERSION 0.3</span><h1>오늘의 학술대회</h1><p>{isConferenceDay ? `${dayLabel(today)} 일정` : `${dayLabel(dashboardDate)} 행사 미리보기`}</p></div><div className="today-date"><b>{Number(today.slice(8, 10))}</b><span>{new Date(`${today}T00:00:00+09:00`).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul', month: 'short', weekday: 'short' })}</span></div></div>
-      {!isConferenceDay && <div className="preview-banner">행사 기간 밖입니다. 첫 행사일 일정을 미리 보여드려요.</div>}
+      {!isConferenceDay && <div className="preview-banner">아직 학술대회 전입니다. 첫 행사일 일정을 미리 보여드려요.</div>}
       <NotificationManager favoriteIds={saved}/>
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>NOW & NEXT</span><h2>{isConferenceDay ? '오늘의 세션' : '예정 세션'}</h2></div><button onClick={() => changeTab('program')}>전체 보기</button></div><div className="dashboard-sessions">{dashboardSessions.slice(0, 3).map((session) => <SessionCard key={session.id} session={session} paperCount={papers.filter((paper) => paper.sessionId === session.id).length}/>)}</div></div>
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>UPCOMING</span><h2>다가오는 일정</h2></div></div><div className="upcoming-list">{dashboardSessions.slice(0, 4).map((session) => <Link href={`/sessions/${session.id}`} key={session.id}><time>{session.time.split('~')[0]}</time><div><b>{session.title}</b><small>{session.venue}</small></div><span>›</span></Link>)}</div></div>
