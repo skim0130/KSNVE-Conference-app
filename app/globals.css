@@ -27,3 +27,8 @@
 /* Version 0.3 schedule and announcements */
 .saved-day h2{display:flex;align-items:center;gap:7px}.saved-day h2 span{display:grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:#e2f2ed;color:var(--brand);font-size:10px}.today-saved{padding:14px;margin-top:15px;border:1px solid #b9dcd2;border-radius:18px;background:#edf7f3}.today-saved h2{margin-top:0}.schedule-empty{margin-top:20px}.announcement-card{display:block;width:100%;text-align:left;cursor:pointer}.announcement-card>div{display:flex;align-items:center;justify-content:space-between}.announcement-card em{width:8px;height:8px;border-radius:50%;background:#e44e4e}.announcement-card p{margin:9px 0;color:var(--muted);font-size:12px;line-height:1.6}.announcement-card.read{opacity:.66}
 @media(max-width:560px){.navbtn{font-size:9px}.navbtn>span{font-size:16px}.dashboard-sessions .session-card{grid-template-columns:58px 1fr 18px}.today-dashboard{padding-bottom:8px}.agenda-card{padding:14px}.announcement-card{border-radius:15px}}
+
+/* Official KSNVE header logo */
+.brand-mark>span{display:none}.brand-logo{width:auto;height:42px;flex:0 0 auto;object-fit:contain;border-radius:9px;background:#fff;padding:2px}.detail-shell .brand-logo{height:36px}@media(max-width:560px){.brand-logo{height:38px}.detail-shell .brand-logo{height:34px}}
+
+.sponsor{justify-content:center}
