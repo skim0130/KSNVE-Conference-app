@@ -19,9 +19,10 @@ export type ExtractedPaper = {
   abstract: string;
   keywords: string[];
   source_page: number | null;
+  pageImage: string;
 };
 
-const scalarFields = ['paper_id', 'session_id', 'flags', 'title', 'authors', 'presenter', 'session', 'date', 'time', 'venue', 'chair', 'abstract', 'source_page'] as const;
+const scalarFields = ['paper_id', 'session_id', 'flags', 'title', 'authors', 'presenter', 'session', 'date', 'time', 'venue', 'chair', 'abstract', 'source_page', 'pageImage'] as const;
 
 export function escapeXml(value: string | number | null) {
   return String(value ?? '')
@@ -80,6 +81,7 @@ export function xmlToPaper(xml: string): ExtractedPaper {
     abstract: tag(xml, 'abstract'),
     keywords: repeatedTags(xml, 'keyword'),
     source_page: /^\d+$/.test(sourcePage) ? Number(sourcePage) : null,
+    pageImage: tag(xml, 'pageImage'),
   };
 }
 

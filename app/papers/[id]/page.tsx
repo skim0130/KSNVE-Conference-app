@@ -152,6 +152,19 @@ export default async function PaperDetail({
           )}
         </section>
 
+        {paper.pageImage && (
+          <section className="abstract original-page">
+            <h2>원문 페이지</h2>
+            <img
+              src={paper.pageImage}
+              alt={`${paper.title} 원문 페이지`}
+              width="1066"
+              height="1458"
+              loading="lazy"
+            />
+          </section>
+        )}
+
         {paper.extractionStatus && paper.extractionStatus !== 'ok' && (
           <section className="abstract">
             <h2>추출 상태</h2>

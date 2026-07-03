@@ -267,6 +267,7 @@ async function main() {
         abstract: content.abstract,
         keywords: content.keywords,
         source_page: match?.physical ?? null,
+        pageImage: match ? `/paper-pages/${paper.id}.webp` : '',
       };
       const missing = (['title', 'authors', 'affiliations', 'presenter', 'session', 'date', 'time', 'venue', 'chair', 'abstract', 'source_page'] as const).filter((field) => Array.isArray(result[field]) ? result[field].length === 0 : !result[field]);
       if (missing.length) missingFields.push({ paper_id: paper.id, fields: missing });

@@ -18,6 +18,7 @@ async function main() {
   const parsingErrors: Array<{ file: string; error: string }> = [];
   const missingFields: Array<{ paper_id: string; fields: string[] }> = [];
   const extractionWarnings: Array<{ paper_id: string; fields: string[] }> = [];
+  const missingPageImages: Array<{ paper_id: string; pageImage: string }> = [];
   const papers: ExtractedPaper[] = [];
   let files: string[];
   try {
@@ -36,6 +37,15 @@ async function main() {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(paper.date)) parsingErrors.push({ file, error: `Invalid date: ${paper.date}` });
       if (!/^\d{2}:\d{2}[~–-]\d{2}:\d{2}$/.test(paper.time)) parsingErrors.push({ file, error: `Invalid time: ${paper.time}` });
       if (paper.source_page !== null && paper.source_page < 1) parsingErrors.push({ file, error: `Invalid source_page: ${paper.source_page}` });
+      const expectedPageImage = paper.source_page === null ? '' : `/paper-pages/${paper.paper_id}.webp`;
+      if (paper.pageImage !== expectedPageImage) parsingErrors.push({ file, error: `Invalid pageImage: ${paper.pageImage || '(empty)'}` });
+      if (paper.pageImage) {
+        try {
+          await fs.access(path.resolve('public', paper.pageImage.replace(/^\//, '')));
+        } catch {
+          missingPageImages.push({ paper_id: paper.paper_id, pageImage: paper.pageImage });
+        }
+      }
       if (file !== `${paper.paper_id}.xml`) parsingErrors.push({ file, error: `Filename does not match paper_id ${paper.paper_id}` });
       papers.push(paper);
     } catch (error) {
@@ -57,7 +67,7 @@ async function main() {
     parsingErrors.push({ file: 'papers.json', error: error instanceof Error ? error.message : String(error) });
   }
 
-  const valid = files.length === programPapers.length && papers.length === programPapers.length && missingFields.length === 0 && parsingErrors.length === 0 && duplicates.length === 0 && missingIds.length === 0 && unexpectedIds.length === 0 && jsonMatchesXml;
+  const valid = files.length === programPapers.length && papers.length === programPapers.length && missingFields.length === 0 && parsingErrors.length === 0 && missingPageImages.length === 0 && duplicates.length === 0 && missingIds.length === 0 && unexpectedIds.length === 0 && jsonMatchesXml;
   const report = {
     validated_at: new Date().toISOString(),
     valid,
@@ -68,6 +78,8 @@ async function main() {
     complete_papers: papers.length - missingFields.length,
     missing_fields: missingFields,
     extraction_warnings: extractionWarnings,
+    page_images: papers.filter((paper) => paper.pageImage).length,
+    missing_page_images: missingPageImages,
     parsing_errors: parsingErrors,
     duplicate_ids: duplicates,
     missing_ids: missingIds,
@@ -86,7 +98,7 @@ async function main() {
   }
 
   await writeJson(path.join(inputRoot, 'validation-report.json'), report);
-  await fs.writeFile(path.join(inputRoot, 'validation-report.md'), `# Paper XML validation report\n\n- Valid: **${valid ? 'yes' : 'no'}**\n- Expected papers: ${programPapers.length}\n- XML files: ${files.length}\n- Complete core records: ${report.complete_papers}\n- Missing required-field papers: ${missingFields.length}\n- Extraction warnings: ${extractionWarnings.length}\n- Parsing errors: ${parsingErrors.length}\n- Missing IDs: ${missingIds.length}\n- Duplicate IDs: ${duplicates.length}\n- JSON matches XML: ${jsonMatchesXml ? 'yes' : 'no'}\n- Promoted to app data: ${report.promoted ? 'yes' : 'no'}\n`, 'utf8');
+  await fs.writeFile(path.join(inputRoot, 'validation-report.md'), `# Paper XML validation report\n\n- Valid: **${valid ? 'yes' : 'no'}**\n- Expected papers: ${programPapers.length}\n- XML files: ${files.length}\n- Complete core records: ${report.complete_papers}\n- Missing required-field papers: ${missingFields.length}\n- Extraction warnings: ${extractionWarnings.length}\n- Paper page images: ${report.page_images}\n- Missing paper page images: ${missingPageImages.length}\n- Parsing errors: ${parsingErrors.length}\n- Missing IDs: ${missingIds.length}\n- Duplicate IDs: ${duplicates.length}\n- JSON matches XML: ${jsonMatchesXml ? 'yes' : 'no'}\n- Promoted to app data: ${report.promoted ? 'yes' : 'no'}\n`, 'utf8');
 
   console.log(`Validation ${valid ? 'PASSED' : 'FAILED'}: ${files.length}/${programPapers.length} XML files, ${missingFields.length} papers with missing fields, ${parsingErrors.length} parsing errors.`);
   if (promote && !valid) console.error('Promotion blocked. Existing data/papers.json and data/papers-xml were not modified.');

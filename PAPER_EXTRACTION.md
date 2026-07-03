@@ -19,6 +19,7 @@ Alternatively, pass an absolute or relative path with `--input`.
 
 ```bash
 npm run extract:papers
+npm run render:paper-pages
 ```
 
 Custom paths are supported:
@@ -54,6 +55,7 @@ Validation checks:
 - required program metadata is present; unavailable abstract/source fields are
   preserved as empty values and reported as extraction warnings;
 - dates, times, filenames, and source-page numbers are valid;
+- every `pageImage` path points to a rendered WebP file;
 - staged `papers.json` contains exactly the same records as the XML files.
 
 Results are written to `validation-report.json` and `validation-report.md` in
@@ -89,7 +91,7 @@ abstract, keywords, and `source_page`.
 
 ## Figure extraction
 
-Figures are not yet extracted. A future pipeline step should add rendered paper
-page images through `pageImage`, or individual figure image paths through
-`figures[].image`, so visual content can be verified and displayed alongside
-the extracted text.
+Original paper pages are rendered to `public/paper-pages/{paperId}.webp` and
+referenced through `pageImage`. Individual figures are not yet extracted. A
+future pipeline step should add cropped figure image paths through
+`figures[].image` when figure-level display is required.

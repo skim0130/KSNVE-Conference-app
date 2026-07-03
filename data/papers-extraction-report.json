@@ -1,5 +1,5 @@
 {
-  "validated_at": "2026-07-03T17:20:15.933Z",
+  "validated_at": "2026-07-03T17:31:23.337Z",
   "valid": true,
   "promoted": true,
   "expected_papers": 248,
@@ -39,6 +39,8 @@
       ]
     }
   ],
+  "page_images": 245,
+  "missing_page_images": [],
   "parsing_errors": [],
   "duplicate_ids": [],
   "missing_ids": [],

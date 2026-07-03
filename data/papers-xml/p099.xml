@@ -13,6 +13,7 @@
   <chair>정의봉(LIG D&amp;A)</chair>
   <abstract>Natural Frequency(&amp; &amp; 고유주파수), Convolutional Neural Network( #43 신경망) age 운용자의 작전 수행을 위한 공간으로, 작전 운용 HSS 위해 운용 편의성을 고려하여 설계하고 제작하여야 한다. 그러나 Ae] 내부 공간은 전자장비로 인한 Ago] 운용자에게 Bas 줄 수 있으며, 내 부 음향 특성은 공간 내부의 구조나 공간 경계의 물성에 따라 변경된다. 따라서 물성 변화에 따른 실내 음 향 공간의 SY 예측과 분석이 필수격이다. 본 연구에서는 인공지등을 활용하여 2차원 평면 Ste] 물성 변화에 따른 음향 고유모드와 고유주파수 변화를 예측하는 인공 신경망을 제시한다. 외벽 1개 면의 질량과 강성에 대한 SYS LHS(Latin Hypercube Sampling) 기법을 이용하여 조합하였으며, 손실함수는 MAE, MAC, Tanimoto indexS 사용하여 인공 신경 망을 학습시켰다. 인공지능 학습 결과, 물성 변화에 민감한 1차 고유주과수 평가 데이터 OOO 중 10% 미만의 오차를 가지는 예측 결과가 99.2%로 인공 신경망의 학습이 잘 진행되었음을 확인할 수 있다. A LULL LIL LLL 내 OO ~ | |i 버버 \ s 10 로 go | 0 Ast natual frequency Ss _, A . 200 더 | ^ | ㅣ &amp; And natural frequency WS@ iy 3 4 … i 4ih natural frequency \\ 6 200 400 600 oo Ground truth [Hz] . . Fig. 2 Comparison of natural frequencies</abstract>
   <source_page>169</source_page>
+  <pageImage>/paper-pages/p099.webp</pageImage>
   <affiliations>
     <affiliation>아주대</affiliation>
     <affiliation>LIG D&amp;A</affiliation>

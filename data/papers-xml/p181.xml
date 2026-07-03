@@ -13,6 +13,7 @@
   <chair>고정우(항공대)</chair>
   <abstract>Analysis(BVI 소음 해석) 헬리콤터 로터에서 발생하는 Blade- Vortex InteractionBVD 현상은 저속 하강 비행 조건에서 지배적인 소음원으로 작용하며, 이를 저감하기 위한 블레이드 끝단 형상 설계가 중요하다. 본 연구에서는 이중 하반각 (Double anhedral angle)S 적용한 HART-II 로터(2270 = 0.057, a = 5.3°, 1 = 0.15)에 대하여 회전익기 통합 해석 코드 CAMRAD 1 를 이용하여 Aeromechanics 모델링 및 AAS 수행하였다. 이후, 얻어진 해석 결과를 사용하여 회전익기 소음 해석 코드 (11-601400 를 이용하여 BVI 소음 AAS 수행하였다. OBR 상 MAT =-8&quot; ) 및 0.95표에 하반각(1&apos; =8&quot; )의 이중 하반각을 적용하였을 때 BVI 소음 특성을 분석하였으며, Baseline 모델 대비 이중 하반각을 적용한 모델에서 최대 BVISPL ©] 약 3.57 08 TAMA Fig. 1). 15 일 게시 | 03 15 fares Wo 1 in 2 1 (gta ^ 110 / ZX 180&quot; ^ 오예 4110 별 &lt; ^ &gt; a fo CV || 05+ 49 a asf By sss or 4 가래 7 를 여배 J peers ata / 0 al Ae Ney Lt ㄱ1 -0.5 0 0.5 1 1 05 0 0.5 1 yiR yiR (a) Baseline model (b) Double anhedral model</abstract>
   <source_page>289</source_page>
+  <pageImage>/paper-pages/p181.webp</pageImage>
   <affiliations>
     <affiliation>충남대</affiliation>
   </affiliations>

@@ -13,6 +13,7 @@
   <chair>전종훈(항공우주연)</chair>
   <abstract>1680008(기계학습) 회전설비 진단에서는 AS 활용한 특징기반 머신러닝 및 Gade] 주로 사용되고 있고, 대표적으로 형상 적-통계적 SAS 활용해 왔다. 이러한 특징은 RMS 등 신호의 에너지 크기만을 나타낸 지표이거나 812, Kurtosis 등 데이터 분포만을 기준으로 계산된 지표이기 때문에 결함의 물리적 특성을 직접 설명하는 a] 제약 이 있어, 선행 연구에서는 이를 보완하기 위해 117에서 확인 가능한 결함 FoF 성분을 특징으로 활용하여 Condition Index 개발하여 적용하였다. 하지만 angular misalignment, odd-harmonics, sub-harmonics7} 잘 나타나 지 않는 rubbings 같이 주파수 성분만으로 정확한 분류가 어려운 결함들이 존재하므로, FFT 정보만으로는 많은 결함 상태를 분류하는 al 제한이 있을 수 있다. 한편, Time wavefom2 위상 변화, 주기의 불규칙성, 순간적인 충격과 같은 과도 응답을 직접 반영할 수 있 고 원신호를 기반으로 하는 EAS 설비 상태를 직관적으로 확인 Aes], 별도의 주파수 변환 없이 빠른 BAS 수행할 수 있다. 하지만 Time wavefoom 분석만으로는 신호에 포함된 다양한 주파수 성분을 통해 결함 을 세부적으로 식별하는 데 한계가 있다. 따라서 회전설비의 결함을 세밀하게 분석하기 위해서는 FETS} Time waveform 기반 ARS 상호 보완적으로 함께 활용할 필요성이 요구된다. 이에 본 연구는 Time wavefomS 활용하여 결함 상태를 분류할 수 있는 Sas 개발하고, Atay 모델에 학습시켜 성등을 평가함으로써 개선된 분석 가능성 및 신뢰성을 확보하고자 한다. 기존 FET 기반 정보와 함 께 사용하면 회전설비에서 발생하는 Agel 대한 상태 ads 할 수 있는 범위 확장에 기여할 수 있을 것으 로 ada 개발된 Sas 검토하기 위해 RK-4 Tests 통해 다양한 결함 조건의 데이터를 취득하여 제안된 특징의 유효성을 확인하였으며, 취득한 데이터를 머신러닝 학습 및 분류성등 평가에 각각 사용하여 검토를 수행하였다. 나이 ae “EP. Time waveform \ aa Bae 가 ae Re 개 002 [aco |를</abstract>
   <source_page>111</source_page>
+  <pageImage>/paper-pages/p038.webp</pageImage>
   <affiliations>
     <affiliation>경상국립대</affiliation>
     <affiliation>울산과학대</affiliation>

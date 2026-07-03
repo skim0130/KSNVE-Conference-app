@@ -8,6 +8,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "extract:papers": "tsx scripts/extract-papers-from-pdf.ts",
+    "render:paper-pages": "tsx scripts/render-paper-pages.ts",
     "validate:papers": "tsx scripts/validate-paper-xml.ts"
   },
   "dependencies": {
