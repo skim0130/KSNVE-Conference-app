@@ -2,6 +2,7 @@ export const conferenceConfig = {
   koreanTitle: '2026년도 추계 소음진동 학술대회',
   englishTitle: 'KSNVE Annual Fall Conference 2026',
   shortTitle: 'KSNVE 2026 Fall',
+  headerTitle: '2026 추계 소음진동 학술대회',
   shortKoreanTitle: '추계학술대회',
   startDate: '2026-11-25',
   endDate: '2026-11-28',
