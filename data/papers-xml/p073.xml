@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paper>
+  <paper_id>p073</paper_id>
+  <session_id>s016</session_id>
+  <flags>*</flags>
+  <title>Rolling Element Bearing Multi-fault Diagnosis using Large Language Model</title>
+  <authors>Rismaya Kumar Mishra, Yong-Hwa Park(KAIST)</authors>
+  <presenter>Rismaya Kumar Mishra</presenter>
+  <session>일반기계(기계시스템), 계측 및 모니터링 [3]</session>
+  <date>2026-05-28</date>
+  <time>09:30~09:45</time>
+  <venue>릴리홀[1]</venue>
+  <chair>전지현(원자력연)</chair>
+  <abstract>Machine maintenance is often considered complex and a forte of condition monitoring experts. Sometimes, the maintenance process can be counterintuitive for operators. In most of the condition monitoring solutions signal or image-based diagnosis is typically used, which is difficult for the end user to understand. In Industry 4.0, it is envisioned to develop smart maintenance strategies, user— friendly interfaces for maintenance planning and control. To make a user interactive solution, Generative Artificial Intelligent (Gen AD based solutions can be used. However, its integration is limited in fault diagnosis due to the insufficient machine maintenance records. Moreover, multi-faults are imposing a sever challenges in fault diagnosis. The multi-faults are complex than single faults and data availability is limited in all forms. Therefore, this article proposes an approach using a Large Language Model (LLM) to distinguish multi-faults in a user-understandable data format generated from rotating machine signals. An experiment has been conducted to acquire vibration and acoustic multi-fault signatures from a motor-bearing test rig, following ISO 10816-1:1995 and ISO 8528-10, respectively. The acquired signals are preprocessed and converted using a feature to text encoding method and text features are fused together for better decision making followed by LLM models training with optimised hyperparameters. The results show that LLMs can identify multi-fault conditions with a classification accuracy of 98.90%. The model&apos;s performance is analysed to justify its effectiveness for better integration with maintenance activities. The proposed method is useful for diagnosing rotating machines under various conditions and can be helpful for interactive machine fault assessment. This work is supported by the InnoCORE program of the Ministry of Science and ICT, Republic of Korea (N10260002). 기 CM, | Fe my al &lt; [대 —— 뻐 1 r | 1 고 ~ 4 Accelerometer . ‘ Brake 에 1 . - 는 개 ~ 때 놓 1 SS ; (et | | 티 = Gearbox ~ Ly 루 &gt; 애스 _ ‘ Meter 「 ㅣ</abstract>
+  <source_page>146</source_page>
+  <affiliations>
+    <affiliation>KAIST</affiliation>
+  </affiliations>
+  <keywords>
+    <keyword>Industrial Al</keyword>
+    <keyword>LLM</keyword>
+    <keyword>Multi-fault diagnosis</keyword>
+    <keyword>Bearing</keyword>
+    <keyword>Feature-to-text encoding</keyword>
+  </keywords>
+</paper>

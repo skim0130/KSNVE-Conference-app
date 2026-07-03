@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paper>
+  <paper_id>p102</paper_id>
+  <session_id>s021</session_id>
+  <flags></flags>
+  <title>머신러닝을 활용한 모빌리티의 고주파 구조기인 소음 예측 연구</title>
+  <authors>김용대, 유지우(현대차)</authors>
+  <presenter>김용대</presenter>
+  <session>기획   미래모빌리티 [1]</session>
+  <date>2026-05-28</date>
+  <time>11:10~11:25</time>
+  <venue>릴리홀[1]</venue>
+  <chair>이효진(방재시험연)</chair>
+  <abstract>전 세계적으로 내연기관 자동차에 대한 규제가 강화되고 친환경 자동차의 도입이 촉진되고 있는 가운데, 자동차 제조사들은 전기자동차 개발에 집중하고 있다. 전기자동차는 기존의 내연기관 자동차와 비교하여 소음이 크게 감소하였으나, 전동파워트레인의 고유한 소음 특성으로 인해 새로운 소음 저감 방안이 필요하다. 특히 전기자동차의 대표적인 소음인 화인소음(\1106 0ㅁ0186)은 전동과워트레인의 전자기력 또는 기어에 의해 발생한다. 기존의 유한요소법을 이용한 DES 구조기인 소음의 추정은 수많은 구조 BEE 인해 막대한 계산 시간과 컴퓨터 자원을 필요로 하며, 실무적 관점에서 실현 불가능할 수 있다. 이러한 문제를 해결하기 위해 본 연구에서는 AAleld(Machine Learning, MUS 활용하여 빠른 예측과 최적화가 가능한 방법을 제시한다. 구조기인 소음 예측을 위해 전동파워트레인의 진동이 마운트를 통해 차량 패널로 전달되는 경로를 모델링했다. 유한요소법 기반 시뮬레이션 모델은 전동파워트레인 모델과 차량 Bae 구성되었으며, 고주파 특성을 정확히 반영하기 위해 카펫, 단열패드, 헤드라이너, 시트 SI 음향 BIAS 포함했다. 설계 번수로는 차량 바닥의 세 개 패널(전방, 중앙, 후방)의 두께, 다섯 aso] 바닥 Bs 두께, 그리고 전동파워트레인 마운트 부시의 ※, ㅠ, 2 방향 강성을 선정했다. 계산 시간 SSS 줄이기 위해 주과수 기반 부분구조합성법(28: Frequency-Based Substructuring) 기법을 적용하여 ASS] Eels 차량의 전달 함수를 별도로 계산한 후 수학적으로 조합했다. 머신러닝 모델의 예측 결과는 유한요소법 기반 예측 결과와 일치했으며#=0.999), 최적화 결과 345112와 480112의 소음 퍼크가 최대 2.6dB 저감되었다. + 교신저자; 현대자동차 ： ：</abstract>
+  <source_page>172</source_page>
+  <affiliations>
+    <affiliation>현대차</affiliation>
+  </affiliations>
+  <keywords>
+    <keyword>whine noise(3}2l 24-4)</keyword>
+    <keyword>machine learning(“] 4 €4*2)</keyword>
+    <keyword>structure-bome(F-Z7] 21)</keyword>
+  </keywords>
+</paper>

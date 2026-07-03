@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paper>
+  <paper_id>p111</paper_id>
+  <session_id>s023</session_id>
+  <flags></flags>
+  <title>Body Fitted Mesh와 Level Set Method를 이용한 동적 컴플라이언스 최소화 기법 연구</title>
+  <authors>배성원(LG전자), 임성훈, 이주이 카즈히로, 니시와키 신지(교토대), 후루타 코조(리슈메이칸대)</authors>
+  <presenter>배성원(LG전자)</presenter>
+  <session>기획   가전 소음진동</session>
+  <date>2026-05-28</date>
+  <time>11:10~11:25</time>
+  <venue>사파이어홀[2]</venue>
+  <chair>기성현(LG전자)</chair>
+  <abstract>fitted mesh(H}T] 핏티드 메쉬 Level Set Method(@] 2 WER). 모드 중첩 방식에 기반한 동적 컴플라이언스 최소화 기법은 제품이나 부품의 aes 최소화하기 위해 자주 사용되며, 이 기법은 정적 문제에 비해 계산 비용이 많이 소요되는 Ade] 있습니다. 이 기법이 Al 산 시간이 오래 걸리는 이유는 정확한 연산을 위해 필요한 모드 수, 그레이 스케일 요소를 줄이기 위한 반복 횟수, 그리고 부드럽고 명확한 경계를 생성하기 위해 필요한 요소의 수가 증가등의 원인에 기인합 니다. 본 논문에서는 레벨 AES Body fitted mesh 를 사용하여 계산 AWS GSA 수 있는 가능성에 대한 분석 결과를 소개합니다. + 교신저자;</abstract>
+  <source_page>181</source_page>
+  <affiliations>
+    <affiliation>LG전자</affiliation>
+    <affiliation>교토대</affiliation>
+    <affiliation>리슈메이칸대</affiliation>
+  </affiliations>
+  <keywords>
+    <keyword>Topology 00000428800(위상최적화)</keyword>
+    <keyword>Dynamic compliance minimization-($4] 컴플라언스 최소화) Body</keyword>
+  </keywords>
+</paper>

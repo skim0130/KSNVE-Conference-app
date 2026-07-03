@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<paper>
+  <paper_id>p022</paper_id>
+  <session_id>s005</session_id>
+  <flags>+</flags>
+  <title>위상 기반 모션 증폭 화질 향상을 위한 Complex Steerable Pyramid의 최적 구성 방법</title>
+  <authors>안재영, 박용화(KAIST)</authors>
+  <presenter>안재영</presenter>
+  <session>진동, 동역학 및 제어이론 [1]</session>
+  <date>2026-05-27</date>
+  <time>15:05~15:20</time>
+  <venue>사파이어홀[1]</venue>
+  <chair>김재환(국립금오공대)</chair>
+  <abstract>위상 기반 모션 $25(Phase-based Motion Magnification, PMM)2 영상 내 미세한 AMS 이미지 주파수 영역의 위상 변화로 해석하여 시각화하는 기법으로, 전통적인 센서의 공간/비용 측면의 제약을 극복할 수 있 는 비접촉식 동적 분석 노구로 주목받고 있다. 특히 Complex Steerable Pyramid(CSP)S 활용한 PMM 기법 은 이미지 품질의 강건성이 뛰어나 확대된 영상으로부터 변위를 추적하는 후처리 적용에 용이함이 있어 다 양한 비전 기반 측정 기법에 널리 활용되고 있다. 기존의 25604 기법은 09#의 스케일 Bas 입력 이미지 의 특성과 관계없이 옥타브(00186) 단위로 분할한다. 그러나 촬영된 객체의 형상과 크기에 따라 이미지의 주과수 분포가 상이하므로, 이러한 일률적인 분할 방식은 주요 주파수 성분의 누락을 초래할 수 있으며, 이 에 따른 결과의 품질 저하가 진동 측정을 위한 변위 데이터 환산 시 정밀도 감소를 야기할 수 있다. 본 연 구에서는 이러한 한계를 극복하기 위해 097의 뱅크 WAS 이미지 스펙트럼상의 에너지 분포를 고려하여 최적화된 스케일 분할을 시노하였다. 제안된 Ws} 기존 방식의 성능 비교를 위해, 객체의 경계 ABTS 평가하는 Tenengrad 기반의 지표를 노입하였다. 한편, 단순 Tenengrad 지표는 BY 현상(08108 artifact)°] 나 노이즈 등의 불규칙한 변화 또한 선명도로 os 수 있으므로, 산출된 선명도 지표를 이미지 픽셀 분포 의 분산 값으로 정규화하여 분석하였다. 이를 통해 주요 주파수 대역을 PEACE 캡처하도록 필터 Was 구성하는 것이 영상 품질 향상에 유의미하게 기여함을 확인하였다. as __ Radial spectral energy with CSP filter banks respanses (at y=0) ee Magnkinte Spectrum of the Image i Ee a eT Vali é UN = Fig. 2 기존 00816기반 CSP 뱅크 RACHA, iene neg 이미지의 주파수 분포를 고려한 csp 뱅크</abstract>
+  <source_page>95</source_page>
+  <affiliations>
+    <affiliation>KAIST</affiliation>
+  </affiliations>
+  <keywords>
+    <keyword>Phase-based Motion Magnification(?] tt 기반 영상 확대)</keyword>
+    <keyword>Complex Steerable Pyramid</keyword>
+  </keywords>
+</paper>

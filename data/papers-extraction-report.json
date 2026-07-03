@@ -1,0 +1,47 @@
+{
+  "validated_at": "2026-07-03T02:58:20.113Z",
+  "valid": true,
+  "promoted": true,
+  "expected_papers": 248,
+  "xml_files": 248,
+  "parsed_papers": 248,
+  "complete_papers": 248,
+  "missing_fields": [],
+  "extraction_warnings": [
+    {
+      "paper_id": "p085",
+      "fields": [
+        "affiliations",
+        "abstract",
+        "source_page"
+      ]
+    },
+    {
+      "paper_id": "p086",
+      "fields": [
+        "affiliations",
+        "abstract",
+        "source_page"
+      ]
+    },
+    {
+      "paper_id": "p087",
+      "fields": [
+        "affiliations",
+        "abstract",
+        "source_page"
+      ]
+    },
+    {
+      "paper_id": "p205",
+      "fields": [
+        "abstract"
+      ]
+    }
+  ],
+  "parsing_errors": [],
+  "duplicate_ids": [],
+  "missing_ids": [],
+  "unexpected_ids": [],
+  "json_matches_xml": true
+}

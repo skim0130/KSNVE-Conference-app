@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "extract:papers": "tsx scripts/extract-papers-from-pdf.ts",
+    "validate:papers": "tsx scripts/validate-paper-xml.ts"
   },
   "dependencies": {
     "@types/node": "latest",
@@ -17,5 +19,8 @@
     "react-dom": "latest",
     "typescript": "latest"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "pdfjs-dist": "^6.1.200",
+    "tsx": "^4.22.5"
+  }
 }
