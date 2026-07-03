@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
+import OriginalPageViewer from '@/components/OriginalPageViewer';
 import PaperActions from '@/components/PaperActions';
 import { dayLabel, papers, sessions, speakers, venues } from '@/lib/conference';
 
@@ -153,16 +154,11 @@ export default async function PaperDetail({
         </section>
 
         {paper.pageImage && (
-          <section className="abstract original-page">
-            <h2>원문 페이지</h2>
-            <img
-              src={paper.pageImage}
-              alt={`${paper.title} 원문 페이지`}
-              width="1066"
-              height="1458"
-              loading="lazy"
-            />
-          </section>
+          <OriginalPageViewer
+            src={paper.pageImage}
+            title={paper.title}
+            sourcePage={paper.sourcePage}
+          />
         )}
 
         {paper.extractionStatus && paper.extractionStatus !== 'ok' && (
