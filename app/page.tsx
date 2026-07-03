@@ -11,6 +11,7 @@ import VenueCard from '@/components/VenueCard';
 import TimelineSession from '@/components/TimelineSession';
 import NotificationManager from '@/components/NotificationManager';
 import { announcements, dayLabel, papers, sessions, speakers, venues, type Paper } from '@/lib/conference';
+import { conferenceConfig } from '@/lib/conference-config';
 import { parseMockNow, upcomingSessionsAt, type MockNow } from '@/lib/dashboard-time';
 
 const favoriteKey = 'ksnveFav';
@@ -46,15 +47,15 @@ function readLocalList(key: string) {
 
 export default function Home() {
   const [mockNow, setMockNow] = useState<MockNow | null>(null);
-  const dates = [...new Set(sessions.map((session) => session.date))];
+  const dates = [...conferenceConfig.dates];
   const today = mockNow?.date ?? localDateKey();
-  const conferenceStart = dates[0];
-  const conferenceEnd = dates[dates.length - 1];
+  const conferenceStart = conferenceConfig.startDate;
+  const conferenceEnd = conferenceConfig.endDate;
   const isBeforeConference = today < conferenceStart;
   const isAfterConference = today > conferenceEnd;
   const daysUntilConference = isBeforeConference ? daysBetween(today, conferenceStart) : 0;
-  const dashboardDate = dates.includes(today) ? today : dates[0];
-  const isConferenceDay = dates.includes(today);
+  const isConferenceDay = today >= conferenceStart && today <= conferenceEnd;
+  const dashboardDate = isConferenceDay ? today : conferenceStart;
   const [tab, setTab] = useState<TabId>('today');
   const [date, setDate] = useState(dashboardDate);
   const [query, setQuery] = useState('');
@@ -129,17 +130,18 @@ export default function Home() {
     {tab === 'today' && <section className="today-dashboard">
       <div className="today-greeting"><div><span>VERSION 0.3</span><h1>오늘의 학술대회</h1><p>{isConferenceDay ? `${dayLabel(today)} 일정` : isAfterConference ? '행사 종료' : `${dayLabel(dashboardDate)} 행사 미리보기`}</p></div><div className="today-date"><b>{Number(today.slice(8, 10))}</b><span>{new Date(`${today}T00:00:00+09:00`).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul', month: 'short', weekday: 'short' })}</span></div></div>
       {mockNow && <div className="mock-time-badge">Mock time: {mockNow.label}</div>}
-      {isBeforeConference && <section className="conference-status-card before-conference"><div className="conference-status-meta"><time>{formatKoreanDate(today)}</time><strong>D-{daysUntilConference}</strong></div><span>CONFERENCE COUNTDOWN</span><h2>2026년도 춘계 소음진동 학술대회</h2><p>첫 행사일 프로그램을 미리 확인해 보세요.</p><button type="button" onClick={showFirstDayProgram}>첫 행사일 프로그램 보기</button></section>}
+      {isBeforeConference && <section className="conference-status-card before-conference"><div className="conference-status-meta"><time>{formatKoreanDate(today)}</time><strong>D-{daysUntilConference}</strong></div><span>CONFERENCE COUNTDOWN</span><h2>{conferenceConfig.koreanTitle}</h2><p>첫 행사일 프로그램을 미리 확인해 보세요.</p><button type="button" onClick={showFirstDayProgram}>첫 행사일 프로그램 보기</button></section>}
+      {isConferenceDay && <div className="conference-live-status"><span>LIVE</span><div><b>학술대회 진행 중</b><small>{formatKoreanDate(today)} · {conferenceConfig.venue}</small></div></div>}
       {isAfterConference && <section className="conference-status-card after-conference"><span>CONFERENCE ARCHIVE</span><h2>학술대회가 종료되었습니다.</h2><p>프로그램과 초록은 계속 열람할 수 있습니다.</p></section>}
       <NotificationManager favoriteIds={saved}/>
-      {!isAfterConference && <><div className="dashboard-section"><div className="dashboard-heading"><div><span>NOW & NEXT</span><h2>{isConferenceDay ? '오늘의 세션' : '예정 세션'}</h2></div><button onClick={() => changeTab('program')}>전체 보기</button></div><div className="dashboard-sessions">{simulatedDashboardSessions.slice(0, 3).map((session) => <SessionCard key={session.id} session={session} paperCount={papers.filter((paper) => paper.sessionId === session.id).length}/>)}{mockNow && simulatedDashboardSessions.length === 0 && <div className="compact-empty">예정된 세션이 없습니다.</div>}</div></div>
-      <div className="dashboard-section"><div className="dashboard-heading"><div><span>UPCOMING</span><h2>다가오는 일정</h2></div></div><div className="upcoming-list">{simulatedUpcomingSessions.slice(0, 4).map((session) => <Link href={`/sessions/${session.id}`} key={session.id}><time>{session.time.split('~')[0]}</time><div><b>{session.title}</b><small>{session.venue}</small></div><span>›</span></Link>)}{mockNow && simulatedUpcomingSessions.length === 0 && <div className="compact-empty">다가오는 일정이 없습니다.</div>}</div></div></>}
+      {!isAfterConference && <><div className="dashboard-section"><div className="dashboard-heading"><div><span>NOW & NEXT</span><h2>{isConferenceDay ? '오늘의 세션' : '예정 세션'}</h2></div><button onClick={() => changeTab('program')}>전체 보기</button></div><div className="dashboard-sessions">{simulatedDashboardSessions.slice(0, 3).map((session) => <SessionCard key={session.id} session={session} paperCount={papers.filter((paper) => paper.sessionId === session.id).length}/>)}{(mockNow || isConferenceDay) && simulatedDashboardSessions.length === 0 && <div className="compact-empty">예정된 세션이 없습니다.</div>}</div></div>
+      <div className="dashboard-section"><div className="dashboard-heading"><div><span>UPCOMING</span><h2>다가오는 일정</h2></div></div><div className="upcoming-list">{simulatedUpcomingSessions.slice(0, 4).map((session) => <Link href={`/sessions/${session.id}`} key={session.id}><time>{session.time.split('~')[0]}</time><div><b>{session.title}</b><small>{session.venue}</small></div><span>›</span></Link>)}{(mockNow || isConferenceDay) && simulatedUpcomingSessions.length === 0 && <div className="compact-empty">다가오는 일정이 없습니다.</div>}</div></div></>}
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>MY PICKS</span><h2>즐겨찾기 논문</h2></div><button onClick={() => changeTab('my')}>내 일정</button></div>{favoritePreview.length ? showPapers(favoritePreview) : <button className="compact-empty" onClick={() => changeTab('papers')}>☆ 관심 논문을 저장하면 여기에 표시됩니다.</button>}</div>
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>RECENT</span><h2>최근 검색</h2></div></div>{recentSearches.length ? <div className="recent-chips">{recentSearches.map((item) => <button key={item} onClick={() => runRecentSearch(item)}>⌕ {item}</button>)}</div> : <button className="compact-empty" onClick={() => changeTab('search')}>⌕ 아직 최근 검색이 없습니다.</button>}</div>
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>ANNOUNCEMENTS</span><h2>공지사항 {unreadCount > 0 && <i>{unreadCount}</i>}</h2></div><Link href="/notices">전체 보기</Link></div><div className="announcement-list">{announcements.slice(0, 3).map((announcement) => <button className={readAnnouncements.includes(announcement.id) ? 'read' : ''} key={announcement.id} onClick={() => markAnnouncementRead(announcement.id)}><span>{announcement.category}</span><div><b>{announcement.title}</b><small>{announcement.body}</small></div>{!readAnnouncements.includes(announcement.id) && <em/>}</button>)}</div></div>
     </section>}
 
-    {tab === 'program' && <section><div className="screen-title"><div><span>CONFERENCE AGENDA</span><h1>프로그램</h1></div></div><div className="date-strip">{dates.map((item) => <button key={item} className={date === item ? 'active' : ''} onClick={() => setDate(item)}><small>{dayLabel(item).split(' ')[1]}요일</small><b>{new Date(`${item}T00:00:00`).getDate()}</b><span>5월</span></button>)}</div><div className="agenda-summary"><b>{dayLabel(date)} 일정</b><span>{sessions.filter((session) => session.date === date).length}개 세션</span></div><div className="program-timeline">{sessions.filter((session) => session.date === date).map((session) => <TimelineSession key={session.id} session={session} sessionPapers={papers.filter((paper) => paper.sessionId === session.id)} favorites={saved} onToggle={toggle}/>)}</div></section>}
+    {tab === 'program' && <section><div className="screen-title"><div><span>CONFERENCE AGENDA</span><h1>프로그램</h1></div></div><div className="date-strip">{dates.map((item) => <button key={item} className={date === item ? 'active' : ''} onClick={() => setDate(item)}><small>{dayLabel(item).split(' ')[1]}요일</small><b>{new Date(`${item}T00:00:00`).getDate()}</b><span>{Number(item.slice(5, 7))}월</span></button>)}</div><div className="agenda-summary"><b>{dayLabel(date)} 일정</b><span>{sessions.filter((session) => session.date === date).length}개 세션</span></div><div className="program-timeline">{sessions.filter((session) => session.date === date).map((session) => <TimelineSession key={session.id} session={session} sessionPapers={papers.filter((paper) => paper.sessionId === session.id)} favorites={saved} onToggle={toggle}/>)}</div></section>}
 
     {tab === 'papers' && <section><div className="screen-title"><div><span>DISCOVER</span><h1>발표 논문</h1></div><strong>{filtered.length}</strong></div><SearchBar value={query} onChange={setQuery}/><div className="filter-chips"><button className="active">전체</button><button>구두 발표</button><button>포스터</button><button>저장됨</button></div>{showPapers(filtered)}</section>}
 

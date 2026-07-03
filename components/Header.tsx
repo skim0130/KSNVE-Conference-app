@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { conferenceConfig } from '@/lib/conference-config';
 
 export default function Header({ compact = false }: { compact?: boolean }) {
   return <header className={`hero ${compact ? 'hero-compact' : ''}`}>
@@ -13,9 +14,9 @@ export default function Header({ compact = false }: { compact?: boolean }) {
         sizes="(max-width: 560px) 38px, 42px"
         priority
       />
-      <div><b>KSNVE 2026</b><small>SPRING CONFERENCE</small></div>
+      <div><b>{conferenceConfig.shortTitle}</b><small>ANNUAL FALL CONFERENCE</small></div>
     </Link>
-    {!compact && <div className="event-meta"><b>춘계학술대회</b><span>5월 27–30일 · 쏠비치 삼척</span></div>}
+    {!compact && <div className="event-meta"><b>{conferenceConfig.shortKoreanTitle}</b><span>{conferenceConfig.displayDate} · {conferenceConfig.venue}</span><small>{conferenceConfig.locationDisplay}</small></div>}
     <nav className="hero-links" aria-label="바로가기">
       <Link href="/notices" aria-label="공지사항">●<span>공지</span></Link>
     </nav>

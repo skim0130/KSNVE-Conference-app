@@ -1,6 +1,8 @@
-# KSNVE 2026 Spring Conference PWA Prototype
+# KSNVE 2026 Fall Conference Test PWA
 
-This is a mobile-first PWA prototype generated from the uploaded 2026 KSNVE Spring Conference program book PDF.
+This is a mobile-first fall-conference test configuration. Paper, session,
+abstract, XML, and page-image contents still come from the 2026 spring dataset;
+conference metadata and dates are mapped at runtime for fall testing.
 
 ## Run locally
 

@@ -1,8 +1,9 @@
 import './globals.css';
+import { conferenceConfig } from '@/lib/conference-config';
 
 export const metadata = {
-  title: 'KSNVE 2026 Spring Conference App',
-  description: 'PWA prototype for the KSNVE 2026 Spring Conference',
+  title: conferenceConfig.englishTitle,
+  description: `${conferenceConfig.koreanTitle} · ${conferenceConfig.locationDisplay}`,
   manifest: '/manifest.json'
 };
 
