@@ -32,3 +32,5 @@
 .brand-mark>span{display:none}.brand-logo{width:auto;height:42px;flex:0 0 auto;object-fit:contain;border-radius:9px;background:#fff;padding:2px}.detail-shell .brand-logo{height:36px}@media(max-width:560px){.brand-logo{height:38px}.detail-shell .brand-logo{height:34px}}
 
 .sponsor{justify-content:center}
+
+.mock-time-badge{display:inline-flex;margin:0 3px;padding:6px 9px;border:1px dashed #a26900;border-radius:8px;background:#fff4d9;color:#765000;font:700 10px ui-monospace,SFMono-Regular,Menlo,monospace}

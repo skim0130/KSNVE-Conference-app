@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit",
     "extract:papers": "tsx scripts/extract-papers-from-pdf.ts",
     "render:paper-pages": "tsx scripts/render-paper-pages.ts",
+    "test:mock-time": "tsx scripts/test-dashboard-mock-time.ts",
     "validate:papers": "tsx scripts/validate-paper-xml.ts"
   },
   "dependencies": {
