@@ -25,7 +25,8 @@ Open http://localhost:3000
 ## Data files
 
 - `data/sessions.json`
-- `data/papers.json`
+- `data/papers-with-abstracts.json` (primary app paper data)
+- `data/papers.json` (immutable program metadata used by the extraction pipeline)
 - `data/speakers.json`
 - `data/venues.json`
 

@@ -86,3 +86,10 @@ abstract, keywords, and `source_page`.
   `p205` has a source page containing metadata but no abstract body
 - Existing `data/papers.json` modified: no
 - Default inputs: `source-pdf/abstract-book.pdf`, `source-pdf/program-book.pdf`
+
+## Figure extraction
+
+Figures are not yet extracted. A future pipeline step should add rendered paper
+page images through `pageImage`, or individual figure image paths through
+`figures[].image`, so visual content can be verified and displayed alongside
+the extracted text.

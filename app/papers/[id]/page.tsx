@@ -21,6 +21,11 @@ export default async function PaperDetail({
   const session = sessions.find((s) => s.id === paper.sessionId);
   const speaker = speakers.find((s) => s.papers.includes(paper.id));
   const venue = venues.find((v) => v.name === paper.venue);
+  const affiliations = Array.isArray(paper.affiliations)
+    ? paper.affiliations
+    : paper.affiliations
+      ? [paper.affiliations]
+      : [];
 
   return (
     <main className="shell detail-shell paper-detail">
@@ -87,6 +92,16 @@ export default async function PaperDetail({
 
         <dl className="details">
           <div>
+            <dt>저자</dt>
+            <dd>{paper.authors}</dd>
+          </div>
+
+          <div>
+            <dt>소속</dt>
+            <dd>{affiliations.length > 0 ? affiliations.join(', ') : '-'}</dd>
+          </div>
+
+          <div>
             <dt>세션</dt>
             <dd>
               {session ? (
@@ -112,9 +127,9 @@ export default async function PaperDetail({
           )}
         </dl>
 
-        {paper.keywords && paper.keywords.length > 0 && (
-          <section className="abstract">
-            <h2>키워드</h2>
+        <section className="abstract">
+          <h2>키워드</h2>
+          {paper.keywords && paper.keywords.length > 0 ? (
             <div className="keyword-list">
               {paper.keywords.map((keyword) => (
                 <span key={keyword} className="keyword-chip">
@@ -122,8 +137,10 @@ export default async function PaperDetail({
                 </span>
               ))}
             </div>
-          </section>
-        )}
+          ) : (
+            <p>-</p>
+          )}
+        </section>
 
         <section className="abstract">
           <h2>초록</h2>
@@ -131,7 +148,7 @@ export default async function PaperDetail({
           {paper.abstract ? (
             <p className="abstract-text">{paper.abstract}</p>
           ) : (
-            <p>초록이 등록되지 않았습니다.</p>
+            <p>No abstract is available.</p>
           )}
         </section>
 
