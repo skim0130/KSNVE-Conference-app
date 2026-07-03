@@ -1,0 +1,3 @@
+import Link from 'next/link'; import Header from '@/components/Header';
+const notices=[['필독','학술대회 등록 및 명찰 수령 안내','2026.05.20'],['프로그램','춘계학술대회 세부 프로그램을 확인해 주세요','2026.05.18'],['교통','쏠비치 삼척 셔틀버스 운행 안내','2026.05.15']];
+export default function Notices(){return <main className="shell detail-shell"><Header compact/><Link href="/" className="back">← 홈</Link><div className="section-heading"><div><span className="kicker">NOTICE</span><h1>공지사항</h1></div></div><div className="list">{notices.map(([tag,title,date])=><article className="card notice" key={title}><span className="badge">{tag}</span><h2>{title}</h2><time>{date}</time></article>)}</div></main>}

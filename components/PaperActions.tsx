@@ -1,0 +1,3 @@
+'use client';
+import { useEffect, useState } from 'react';
+export default function PaperActions({id}:{id:string}){const [saved,setSaved]=useState(false);useEffect(()=>{try{setSaved(JSON.parse(localStorage.getItem('ksnveFav')||'[]').includes(id))}catch{}},[id]);const toggle=()=>{let items:string[]=[];try{items=JSON.parse(localStorage.getItem('ksnveFav')||'[]')}catch{}const next=items.includes(id)?items.filter(x=>x!==id):[...items,id];localStorage.setItem('ksnveFav',JSON.stringify(next));setSaved(next.includes(id));};return <div className="detail-actions"><button onClick={toggle} aria-pressed={saved}><span>{saved?'★':'☆'}</span>{saved?'내 일정에 저장됨':'내 일정에 추가'}</button><button><span>↗</span>공유</button></div>}

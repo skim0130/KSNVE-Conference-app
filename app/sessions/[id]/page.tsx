@@ -1,0 +1,6 @@
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
+import Header from '@/components/Header'; import PaperCard from '@/components/PaperCard';
+import { dayLabel, papers, sessions } from '@/lib/conference';
+export function generateStaticParams(){return sessions.map(s=>({id:s.id}));}
+export default async function SessionDetail({params}:{params:Promise<{id:string}>}){const {id}=await params;const session=sessions.find(s=>s.id===id);if(!session)notFound();const sessionPapers=papers.filter(p=>p.sessionId===id);return <main className="shell detail-shell"><Header compact/><Link href="/" className="back">← 전체 프로그램</Link><section className="detail-card"><div className="badges"><span className="badge">{dayLabel(session.date)}</span><span className="badge">{session.time}</span><span className="badge">{session.venue}</span></div><p className="kicker">SESSION · {session.id.toUpperCase()}</p><h1>{session.title}</h1><p className="meta large">좌장 {session.chair} · 발표 {sessionPapers.length}건</p></section><h2 className="section-title">세션 발표</h2><div className="list">{sessionPapers.map(p=><PaperCard key={p.id} paper={p}/>)}</div></main>}

@@ -1,0 +1,3 @@
+import Link from 'next/link'; import Header from '@/components/Header';
+const sponsors=['현대자동차','LG전자','삼성전자','한국타이어앤테크놀로지','두산에너빌리티','브뤼엘앤드케어'];
+export default function Sponsors(){return <main className="shell detail-shell"><Header compact/><Link href="/" className="back">← 홈</Link><div className="section-heading"><div><span className="kicker">PARTNERS</span><h1>함께하는 후원사</h1></div></div><div className="sponsor-grid">{sponsors.map((name,i)=><article className={`sponsor tier-${i<2?'gold':'silver'}`} key={name}><span>{i<2?'GOLD PARTNER':'PARTNER'}</span><strong>{name}</strong></article>)}</div></main>}

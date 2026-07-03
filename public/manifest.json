@@ -1,0 +1,9 @@
+{
+  "name": "KSNVE 2026 Spring Conference",
+  "short_name": "KSNVE 2026S",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f6f8fb",
+  "theme_color": "#00796b",
+  "icons": []
+}
