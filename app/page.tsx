@@ -138,7 +138,7 @@ export default function Home() {
     changeTab('program');
   };
 
-  return <main className="shell app-shell"><Header/>
+  return <main className="shell app-shell"><Header compact={tab !== 'today'}/>
     {tab === 'today' && <section className="today-dashboard">
       <div className="today-greeting"><div><h1>오늘의 학술대회</h1><p>{isConferenceDay ? `${dayLabel(today)} 일정` : isAfterConference ? '행사 종료' : `${dayLabel(dashboardDate)} 행사 미리보기`}</p></div></div>
       {mockNow && <div className="mock-time-badge">Mock time: {mockNow.label}</div>}
