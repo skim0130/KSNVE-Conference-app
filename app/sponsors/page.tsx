@@ -1,3 +1,3 @@
 import Link from 'next/link'; import Header from '@/components/Header';
-const sponsors=['현대자동차','LG전자','삼성전자','SK하이닉스','카카오','네이버','롯데그룹','포스코','한화그룹','CJ그룹','KT','현대중공업','두산그룹','GS그룹','신세계그룹','한진그룹','농심','오뚜기',  '동원그룹','아모레퍼시픽'];
-export default function Sponsors(){return <main className="shell detail-shell"><Header compact/><Link href="/" className="back">← 홈</Link><div className="section-heading"><div><span className="kicker">PARTNERS</span><h1>함께하는 후원사</h1></div></div><div className="sponsor-grid">{sponsors.map((name,i)=><article className={`sponsor tier-${i<2?'gold':'silver'}`} key={name}><strong>{name}</strong></article>)}</div></main>}
+const sponsors=['현대자동차','LIG D&A','LG전자','삼성전자','SK하이닉스','현대중공업','두산그룹','GS그룹'];
+export default function Sponsors(){return <main className="shell detail-shell"><Header compact/><Link href="/" className="back">← 홈</Link><div className="section-heading"><div><span className="kicker">PARTNERS</span><h1>함께하는 후원사</h1></div></div><div className="sponsor-grid">{sponsors.map((name)=><article className="sponsor" key={name}><strong>{name}</strong></article>)}</div></main>}

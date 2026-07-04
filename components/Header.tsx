@@ -4,7 +4,7 @@ import { conferenceConfig } from '@/lib/conference-config';
 
 export default function Header({ compact = false }: { compact?: boolean }) {
   return <header className={`hero ${compact ? 'hero-compact' : 'hero-today'}`}>
-    <Link href="/" className="brand-mark">
+    <Link href="/" className="brand-mark" aria-label={compact ? '오늘 화면으로 이동' : undefined}>
       <Image
         className="brand-logo"
         src="/images/ksnve-logo-transparent.png"
