@@ -78,7 +78,10 @@ export default function Home() {
     setSaved(readLocalList(favoriteKey));
     setRecentSearches(readLocalList(recentSearchKey));
     setReadAnnouncements(readLocalList(readAnnouncementKey));
-    setMockNow(parseMockNow(new URLSearchParams(window.location.search).get('mockNow')));
+    const params = new URLSearchParams(window.location.search);
+    const requestedTab = params.get('tab');
+    if (requestedTab === 'program' || requestedTab === 'search' || requestedTab === 'my' || requestedTab === 'more') setTab(requestedTab);
+    setMockNow(parseMockNow(params.get('mockNow')));
   }, []);
 
   const toggle = (id: string) => setSaved((current) => {
@@ -127,6 +130,10 @@ export default function Home() {
   const changeTab = (id: TabId) => {
     setTab(id);
     if (id !== 'search') setQuery('');
+    const url = new URL(window.location.href);
+    if (id === 'today') url.searchParams.delete('tab');
+    else url.searchParams.set('tab', id);
+    window.history.replaceState(null, '', `${url.pathname}${url.search}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
   const runRecentSearch = (value: string) => {

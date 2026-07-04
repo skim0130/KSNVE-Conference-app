@@ -15,7 +15,7 @@ export default function InfoPlaceholder({
   return (
     <main className="shell detail-shell info-placeholder-page">
       <Header compact />
-      <Link href="/" className="back">← 더보기</Link>
+      <Link href="/?tab=more" className="back">← 더보기</Link>
       <section className="detail-card info-placeholder">
         <span className="kicker">{kicker}</span>
         <h1>{title}</h1>
