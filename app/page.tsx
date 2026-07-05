@@ -36,17 +36,6 @@ function daysBetween(from: string, to: string) {
   return Math.round((Date.parse(`${to}T00:00:00Z`) - Date.parse(`${from}T00:00:00Z`)) / 86_400_000);
 }
 
-function groupSessionsByStart(items: Session[]) {
-  return items.reduce<Array<{ key: string; time: string; sessions: Session[] }>>((groups, session) => {
-    const time = session.time.split('~')[0];
-    const key = `${session.date}-${time}`;
-    const group = groups.find((item) => item.key === key);
-    if (group) group.sessions.push(session);
-    else groups.push({ key, time, sessions: [session] });
-    return groups;
-  }, []);
-}
-
 function sessionRange(session: Session) {
   const [start, end] = session.time.split(/[~–-]/);
   const startsAt = new Date(`${session.date}T${start}:00+09:00`).getTime();
@@ -71,7 +60,7 @@ function currentOrNextSessions(items: Session[], date: string, now: Date) {
   return upcoming.filter((session) => sessionRange(session).start === nearestStart);
 }
 
-const majorEventPattern = /개회|개막|기조|plenary|특별\s*강연|총회|시상|만찬|웰컴|전시부스\s*투어|폐회|폐막|대토론회|정보\s*교류회/i;
+const majorEventPattern = /평의원회|개회|개막|키노트|keynote|기조\s*강연|plenary|초청.*강연|특별\s*초청강연|특별세션|총회|시상|만찬|웰컴\s*리셉션|웰컴리셉션|폐회|폐막|대토론회/i;
 
 function isMajorEvent(session: Session) {
   return majorEventPattern.test(`${session.title} ${session.category}`);
@@ -145,8 +134,9 @@ export default function Home() {
   const dashboardSessions = sessions.filter((session) => session.date === dashboardDate);
   const dashboardNow = mockNow?.instant ?? new Date();
   const currentOrNext = currentOrNextSessions(sessions, dashboardDate, dashboardNow);
-  const remainingMajorEvents = dashboardSessions.filter((session) => isMajorEvent(session) && sessionRange(session).end > dashboardNow.getTime());
-  const majorEventGroups = groupSessionsByStart(remainingMajorEvents);
+  const remainingMajorEvents = dashboardSessions
+    .filter((session) => isMajorEvent(session) && sessionRange(session).end > dashboardNow.getTime())
+    .sort((left, right) => sessionRange(left).start - sessionRange(right).start);
   const unreadCount = announcements.filter((announcement) => !readAnnouncements.includes(announcement.id)).length;
 
   const markAnnouncementRead = (id: string) => setReadAnnouncements((current) => {
@@ -192,7 +182,7 @@ export default function Home() {
       {isConferenceDay && <div className="conference-live-status"><span>LIVE</span><div><b>학술대회 진행 중</b><small>{formatKoreanDate(today)} · {conferenceConfig.venue}</small></div></div>}
       {isAfterConference && <section className="conference-status-card after-conference"><span>CONFERENCE ARCHIVE</span><h2>학술대회가 종료되었습니다.</h2><p>프로그램과 초록은 계속 열람할 수 있습니다.</p></section>}
       {!isAfterConference && <><div className="dashboard-section"><div className="dashboard-heading"><div><span>NOW & NEXT</span><h2>현재 진행 중 / 다음 세션</h2></div><button onClick={() => changeTab('program')}>전체 보기</button></div><div className="dashboard-sessions">{currentOrNext.map((session) => <SessionCard key={session.id} session={session} paperCount={papers.filter((paper) => paper.sessionId === session.id).length}/>)}{currentOrNext.length === 0 && <div className="compact-empty">현재 진행 중이거나 예정된 세션이 없습니다.</div>}</div></div>
-      <div className="dashboard-section"><div className="dashboard-heading"><div><span>MAJOR EVENTS</span><h2>오늘 남은 주요 일정</h2></div></div><div className="upcoming-groups">{majorEventGroups.map((group) => <section className="upcoming-group" key={group.key}><time>{group.time}</time><div>{group.sessions.map((session) => <Link href={`/sessions/${session.id}`} key={session.id}><div><b>{session.title}</b><small>{session.venue}</small></div><span>›</span></Link>)}</div></section>)}{majorEventGroups.length === 0 && <div className="compact-empty">오늘 예정된 주요 행사가 없습니다.</div>}</div></div></>}
+      <div className="dashboard-section"><div className="dashboard-heading"><div><span>MAJOR EVENTS</span><h2>오늘의 주요 일정</h2></div></div><div className="major-event-list">{remainingMajorEvents.map((session) => <Link href={`/sessions/${session.id}`} key={session.id}><time>{session.time.split('~')[0]}</time><div><b>{session.title}</b><small>{session.venue}</small></div><span>›</span></Link>)}{remainingMajorEvents.length === 0 && <div className="compact-empty">오늘 예정된 주요 일정이 없습니다</div>}</div></div></>}
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>ANNOUNCEMENTS</span><h2>공지사항 {unreadCount > 0 && <i>{unreadCount}</i>}</h2></div>{announcements.length > 3 && <Link href="/notices">전체 보기</Link>}</div><div className="announcement-list">{announcements.slice(0, 3).map((announcement) => <button className={readAnnouncements.includes(announcement.id) ? 'read' : ''} key={announcement.id} onClick={() => markAnnouncementRead(announcement.id)}><span>{announcement.category}</span><div><b>{announcement.title}</b><small>{announcement.body}</small></div>{!readAnnouncements.includes(announcement.id) && <em>NEW</em>}</button>)}</div></div>
     </section>}
 
