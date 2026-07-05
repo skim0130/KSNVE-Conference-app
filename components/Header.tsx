@@ -15,7 +15,8 @@ export default function Header({ compact = false }: { compact?: boolean }) {
         priority
       />
       <div className="hero-title-block">
-        <b><span>2026 추계</span><span>소음진동 학술대회</span></b>
+        <b>2026 추계 소음진동 학술대회</b>
+        <em className="conference-tagline">지속가능한 내일의 소음 진동</em>
         <small><span>{conferenceConfig.displayDate}</span><span>{conferenceConfig.venue}</span></small>
       </div>
     </Link>
