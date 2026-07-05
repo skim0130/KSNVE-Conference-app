@@ -88,8 +88,8 @@ export const venues = venuesData as Venue[];
 export const speakers = speakersData as Speaker[];
 export const announcements: Announcement[] = (announcementsData as Announcement[]).map((announcement) => ({
   ...announcement,
-  title: mapSpringConferenceTextToFall(announcement.title),
-  body: mapSpringConferenceTextToFall(announcement.body),
+  title: announcement.id === 'notice-000' ? announcement.title : mapSpringConferenceTextToFall(announcement.title),
+  body: announcement.id === 'notice-000' ? announcement.body : mapSpringConferenceTextToFall(announcement.body),
 }));
 
 export const dayLabel = (date: string) => {
