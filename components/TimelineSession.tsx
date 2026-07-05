@@ -10,10 +10,10 @@ export default function TimelineSession({ session, sessionPapers, favorites, onT
       <span className="category-label">{session.category}</span>
       <h3><Link href={`/sessions/${session.id}`}>{session.title}</Link></h3>
       <p>⌖ {session.venue} · 좌장 {session.chair}</p>
-      <details>
+      {sessionPapers.length > 0 && <details>
         <summary>발표 {sessionPapers.length}건 보기 <span>⌄</span></summary>
         <div className="nested-papers">{sessionPapers.map((paper) => <PaperCard key={paper.id} paper={paper} saved={favorites.includes(paper.id)} onToggle={onToggle}/>)}</div>
-      </details>
+      </details>}
     </div>
   </article>;
 }

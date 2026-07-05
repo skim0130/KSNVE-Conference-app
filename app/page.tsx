@@ -49,9 +49,10 @@ function groupSessionsByStart(items: Session[]) {
 
 function sessionRange(session: Session) {
   const [start, end] = session.time.split(/[~–-]/);
+  const startsAt = new Date(`${session.date}T${start}:00+09:00`).getTime();
   return {
-    start: new Date(`${session.date}T${start}:00+09:00`).getTime(),
-    end: new Date(`${session.date}T${end}:00+09:00`).getTime(),
+    start: startsAt,
+    end: end ? new Date(`${session.date}T${end}:00+09:00`).getTime() : startsAt + 2 * 60 * 60 * 1000,
   };
 }
 
@@ -70,7 +71,7 @@ function currentOrNextSessions(items: Session[], date: string, now: Date) {
   return upcoming.filter((session) => sessionRange(session).start === nearestStart);
 }
 
-const majorEventPattern = /개회|개막|기조|plenary|특별\s*강연|총회|시상|만찬|폐회|폐막|대토론회|정보\s*교류회/i;
+const majorEventPattern = /개회|개막|기조|plenary|특별\s*강연|총회|시상|만찬|웰컴|전시부스\s*투어|폐회|폐막|대토론회|정보\s*교류회/i;
 
 function isMajorEvent(session: Session) {
   return majorEventPattern.test(`${session.title} ${session.category}`);
@@ -195,7 +196,7 @@ export default function Home() {
       <div className="dashboard-section"><div className="dashboard-heading"><div><span>ANNOUNCEMENTS</span><h2>공지사항 {unreadCount > 0 && <i>{unreadCount}</i>}</h2></div>{announcements.length > 3 && <Link href="/notices">전체 보기</Link>}</div><div className="announcement-list">{announcements.slice(0, 3).map((announcement) => <button className={readAnnouncements.includes(announcement.id) ? 'read' : ''} key={announcement.id} onClick={() => markAnnouncementRead(announcement.id)}><span>{announcement.category}</span><div><b>{announcement.title}</b><small>{announcement.body}</small></div>{!readAnnouncements.includes(announcement.id) && <em>NEW</em>}</button>)}</div></div>
     </section>}
 
-    {tab === 'program' && <section><div className="screen-title"><div><span>CONFERENCE AGENDA</span><h1>프로그램</h1></div></div><div className="date-strip">{dates.map((item) => <button key={item} className={date === item ? 'active' : ''} onClick={() => setDate(item)}><small>{dayLabel(item).split(' ')[1]}요일</small><b>{new Date(`${item}T00:00:00`).getDate()}</b><span>{Number(item.slice(5, 7))}월</span></button>)}</div><div className="agenda-summary"><b>{dayLabel(date)} 일정</b><span>{sessions.filter((session) => session.date === date).length}개 세션</span></div><div className="program-timeline">{sessions.filter((session) => session.date === date).map((session) => <TimelineSession key={session.id} session={session} sessionPapers={papers.filter((paper) => paper.sessionId === session.id)} favorites={saved} onToggle={toggle}/>)}</div></section>}
+    {tab === 'program' && <section><div className="screen-title"><div><span>CONFERENCE AGENDA</span><h1>프로그램</h1></div></div><div className="date-strip">{dates.map((item) => <button key={item} className={date === item ? 'active' : ''} onClick={() => setDate(item)}><small>{dayLabel(item).split(' ')[1]}요일</small><b>{new Date(`${item}T00:00:00`).getDate()}</b><span>{Number(item.slice(5, 7))}월</span></button>)}</div><div className="agenda-summary"><b>{dayLabel(date)} 일정</b><span>{sessions.filter((session) => session.date === date).length}개 세션</span></div><div className="program-timeline">{sessions.filter((session) => session.date === date).sort((left, right) => left.time.localeCompare(right.time)).map((session) => <TimelineSession key={session.id} session={session} sessionPapers={papers.filter((paper) => paper.sessionId === session.id)} favorites={saved} onToggle={toggle}/>)}</div></section>}
 
     {tab === 'papers' && <section><div className="screen-title"><div><span>DISCOVER</span><h1>발표 논문</h1></div><strong>{filtered.length}</strong></div><SearchBar value={query} onChange={setQuery}/><div className="filter-chips"><button className="active">전체</button><button>구두 발표</button><button>포스터</button><button>저장됨</button></div>{showPapers(filtered)}</section>}
 

@@ -25,8 +25,9 @@ export function mapSpringDateToFall(date: string) {
   return springToFallDate[date] ?? date;
 }
 
-// The spring JSON currently omits its May 30 closing program. Keep the source
-// file unchanged and supply its fall-test equivalent at runtime.
+// The spring JSON contains the paper sessions only. Keep the source file
+// unchanged and supply the official program-book events at runtime, mapped to
+// the fall-test dates.
 export const fallTestAdditionalSessions = [
   {
     id: 's054',
@@ -37,6 +38,96 @@ export const fallTestAdditionalSessions = [
     venue: conferenceConfig.venue,
     chair: '-',
     category: '대토론회 및 정보 교류회',
+  },
+  {
+    id: 's055',
+    title: '전시부스 투어',
+    date: '2026-11-25',
+    day: '수',
+    time: '15:40~16:00',
+    venue: '1층 로비',
+    chair: '-',
+    category: '전시 행사',
+  },
+  {
+    id: 's056',
+    title: '웰컴리셉션',
+    date: '2026-11-25',
+    day: '수',
+    time: '18:00~',
+    venue: '그랜드볼룸[1]',
+    chair: '-',
+    category: '공식 행사',
+  },
+  {
+    id: 's057',
+    title: '전시부스 투어',
+    date: '2026-11-26',
+    day: '목',
+    time: '10:20~10:40',
+    venue: '1층 로비',
+    chair: '-',
+    category: '전시 행사',
+  },
+  {
+    id: 's058',
+    title: '포스터 발표 [1]',
+    date: '2026-11-26',
+    day: '목',
+    time: '13:00~13:40',
+    venue: 'B1층 로비',
+    chair: '-',
+    category: '포스터 발표',
+  },
+  {
+    id: 's059',
+    title: '전시부스 투어',
+    date: '2026-11-26',
+    day: '목',
+    time: '15:00~15:20',
+    venue: '1층 로비',
+    chair: '-',
+    category: '전시 행사',
+  },
+  {
+    id: 's060',
+    title: '개회식',
+    date: '2026-11-26',
+    day: '목',
+    time: '17:00~17:10',
+    venue: '에메랄드홀',
+    chair: '-',
+    category: '공식 행사',
+  },
+  {
+    id: 's061',
+    title: '초청특별강연 - 세계속의 K-원전 (장희승)',
+    date: '2026-11-26',
+    day: '목',
+    time: '17:10~17:50',
+    venue: '에메랄드홀',
+    chair: '-',
+    category: '초청특별강연',
+  },
+  {
+    id: 's062',
+    title: '만찬',
+    date: '2026-11-26',
+    day: '목',
+    time: '18:00~',
+    venue: '그랜드볼룸',
+    chair: '-',
+    category: '공식 행사',
+  },
+  {
+    id: 's063',
+    title: '전시부스 투어',
+    date: '2026-11-27',
+    day: '금',
+    time: '10:00~10:40',
+    venue: '1층 로비',
+    chair: '-',
+    category: '전시 행사',
   },
 ] as const;
 
