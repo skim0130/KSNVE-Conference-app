@@ -9,7 +9,7 @@ const floors = [
     src: '/images/Venue_layout_1F.png',
     width: 1574,
     height: 1876,
-    rooms: ['그랜드볼룸[1]', '그랜드볼룸[2]', '에메랄드홀'],
+    rooms: ['그랜드볼룸[1]', '그랜드볼룸[2]', '에메랄드홀', '오팔홀[1]', '오팔홀[2]'],
   },
   {
     title: 'B1층',
