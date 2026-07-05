@@ -157,6 +157,7 @@ export default function Home() {
 
   const showPapers = (items: Paper[]) => <div className="list paper-list">{items.map((paper) => <PaperCard key={paper.id} paper={paper} saved={saved.includes(paper.id)} onToggle={toggle}/>)}</div>;
   const changeTab = (id: TabId) => {
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     setTab(id);
     if (id !== 'search') setQuery('');
     const url = new URL(window.location.href);
