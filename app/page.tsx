@@ -10,6 +10,7 @@ import SessionCard from '@/components/SessionCard';
 import VenueCard from '@/components/VenueCard';
 import TimelineSession from '@/components/TimelineSession';
 import NotificationManager from '@/components/NotificationManager';
+import TimeTravelPanel from '@/components/TimeTravelPanel';
 import { announcements, dayLabel, papers, sessions, speakers, venues, type Paper, type Session } from '@/lib/conference';
 import { conferenceConfig } from '@/lib/conference-config';
 import { parseMockNow, type MockNow } from '@/lib/dashboard-time';
@@ -77,6 +78,7 @@ function readLocalList(key: string) {
 
 export default function Home() {
   const [mockNow, setMockNow] = useState<MockNow | null>(null);
+  const [showTimeTravel, setShowTimeTravel] = useState(false);
   const dates = [...conferenceConfig.dates];
   const today = mockNow?.date ?? localDateKey();
   const conferenceStart = conferenceConfig.startDate;
@@ -98,6 +100,7 @@ export default function Home() {
     setRecentSearches(readLocalList(recentSearchKey));
     setReadAnnouncements(readLocalList(readAnnouncementKey));
     const params = new URLSearchParams(window.location.search);
+    setShowTimeTravel(process.env.NODE_ENV === 'development' || params.get('dev') === '1');
     const requestedTab = params.get('tab');
     if (requestedTab === 'program' || requestedTab === 'search' || requestedTab === 'my' || requestedTab === 'more') setTab(requestedTab);
     setMockNow(parseMockNow(params.get('mockNow')));
@@ -174,10 +177,18 @@ export default function Home() {
     setDate(conferenceStart);
     changeTab('program');
   };
+  const changeMockNow = (value: string | null) => {
+    setMockNow(parseMockNow(value));
+    const url = new URL(window.location.href);
+    url.searchParams.set('dev', '1');
+    if (value) url.searchParams.set('mockNow', value);
+    else url.searchParams.delete('mockNow');
+    window.history.replaceState(null, '', `${url.pathname}${url.search}`);
+  };
 
   return <main className="shell app-shell"><Header compact={tab !== 'today'}/>
     {tab === 'today' && <section className="today-dashboard">
-      {mockNow && <div className="mock-time-badge">Mock time: {mockNow.label}</div>}
+      {showTimeTravel && <TimeTravelPanel mockNow={mockNow} onChange={changeMockNow} />}
       {isBeforeConference && <section className="conference-status-card before-conference"><div className="conference-status-meta"><time>{formatKoreanDate(today)}</time><strong>D-{daysUntilConference}</strong></div><span>CONFERENCE COUNTDOWN</span><h2>{conferenceConfig.koreanTitle}</h2><p className="countdown-copy"><strong>학술대회가 {daysUntilConference}일 남았습니다.</strong><span>첫 행사일 프로그램을 미리 살펴보세요.</span></p><button type="button" onClick={showFirstDayProgram}>첫 행사일 프로그램 보기</button></section>}
       {isConferenceDay && <div className="conference-live-status"><span>LIVE</span><div><b>학술대회 진행 중</b><small>{formatKoreanDate(today)} · {conferenceConfig.venue}</small></div></div>}
       {isAfterConference && <section className="conference-status-card after-conference"><span>CONFERENCE ARCHIVE</span><h2>학술대회가 종료되었습니다.</h2><p>프로그램과 초록은 계속 열람할 수 있습니다.</p></section>}
