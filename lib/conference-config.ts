@@ -129,6 +129,16 @@ export const fallTestAdditionalSessions = [
     chair: '-',
     category: '전시 행사',
   },
+  {
+    id: 's064',
+    title: '학생 멘토링 세션',
+    date: '2026-11-26',
+    day: '목',
+    time: '15:20~16:40',
+    venue: '오팔홀[2]',
+    chair: '이승철',
+    category: '학생 멘토링',
+  },
 ] as const;
 
 export function mapSpringConferenceTextToFall(value: string) {
