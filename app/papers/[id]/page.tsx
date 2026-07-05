@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import OriginalPageViewer from '@/components/OriginalPageViewer';
 import PaperActions from '@/components/PaperActions';
+import PresentationBadge from '@/components/PresentationBadge';
 import { dayLabel, papers, sessions, speakers, venues } from '@/lib/conference';
 
 export function generateStaticParams() {
@@ -37,9 +38,7 @@ export default async function PaperDetail({
       </Link>
 
       <article className="detail-card">
-        <span className="paper-type">
-          ORAL PRESENTATION · {paper.id.toUpperCase()}
-        </span>
+        <PresentationBadge paper={paper} showId />
 
         <h1>{paper.title}</h1>
 
