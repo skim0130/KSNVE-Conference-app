@@ -88,6 +88,10 @@ abstract, keywords, and `source_page`.
   `p205` has a source page containing metadata but no abstract body
 - Existing `data/papers.json` modified: no
 - Default inputs: `source-pdf/abstract-book.pdf`, `source-pdf/program-book.pdf`
+- Poster metadata: 71 papers (`P101`-`P138`, `P201`-`P233`) are generated
+  separately in `data/poster-papers.json` from the program book and connected
+  to the two poster sessions. These records currently have no extracted
+  abstract, XML, or original-page image.
 
 ## Figure extraction
 

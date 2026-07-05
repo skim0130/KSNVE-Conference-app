@@ -8,6 +8,7 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "extract:papers": "tsx scripts/extract-papers-from-pdf.ts",
+    "extract:posters": "python3 scripts/extract-poster-papers-from-program.py",
     "render:paper-pages": "tsx scripts/render-paper-pages.ts",
     "test:mock-time": "tsx scripts/test-dashboard-mock-time.ts",
     "validate:papers": "tsx scripts/validate-paper-xml.ts"

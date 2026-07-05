@@ -1,4 +1,5 @@
 import papersData from '@/data/papers-with-abstracts.json';
+import posterPapersData from '@/data/poster-papers.json';
 import sessionsData from '@/data/sessions.json';
 import venuesData from '@/data/venues.json';
 import speakersData from '@/data/speakers.json';
@@ -69,7 +70,7 @@ type PaperDataRecord = Omit<Paper, 'sourcePage'> & {
   source_page?: number | null;
 };
 
-export const papers: Paper[] = (papersData as PaperDataRecord[]).map(
+export const papers: Paper[] = ([...papersData, ...posterPapersData] as PaperDataRecord[]).map(
   ({ source_page: sourcePage, ...paper }) => ({
     ...paper,
     date: mapSpringDateToFall(paper.date),
