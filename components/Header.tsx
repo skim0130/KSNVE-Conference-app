@@ -16,8 +16,8 @@ export default function Header({ compact = false }: { compact?: boolean }) {
       />
       <div className="hero-title-block">
         <b>2026 추계 소음진동 학술대회</b>
-        <em className="conference-tagline">지속가능한 내일의 소음 진동</em>
         <small><span>{conferenceConfig.displayDate}</span><span>{conferenceConfig.venue}</span></small>
+        <em className="conference-tagline">지속가능한 내일의 소음 진동</em>
       </div>
     </Link>
     <nav className="hero-links" aria-label="바로가기">
