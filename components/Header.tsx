@@ -1,10 +1,16 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { conferenceConfig } from '@/lib/conference-config';
 
-export default function Header({ compact = false }: { compact?: boolean }) {
+export default function Header({ compact = false, onHome }: { compact?: boolean; onHome?: () => void }) {
   return <header className={`hero ${compact ? 'hero-compact' : 'hero-today'}`}>
-    <Link href="/" className="brand-mark" aria-label={compact ? '오늘 화면으로 이동' : undefined}>
+    <Link href="/" className="brand-mark" aria-label={compact ? '홈 화면으로 이동' : undefined} onClick={(event) => {
+      if (!onHome) return;
+      event.preventDefault();
+      onHome();
+    }}>
       <Image
         className="brand-logo"
         src="/images/ksnve-logo-transparent.png"

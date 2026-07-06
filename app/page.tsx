@@ -186,7 +186,7 @@ export default function Home() {
     window.history.replaceState(null, '', `${url.pathname}${url.search}`);
   };
 
-  return <main className="shell app-shell"><Header compact={tab !== 'today'}/>
+  return <main className="shell app-shell"><Header compact={tab !== 'today'} onHome={tab !== 'today' ? () => changeTab('today') : undefined}/>
     {tab === 'today' && <section className="today-dashboard">
       {showTimeTravel && <TimeTravelPanel mockNow={mockNow} onChange={changeMockNow} />}
       {isBeforeConference && <section className="conference-status-card before-conference"><div className="conference-status-meta"><time>{formatKoreanDate(today)}</time><strong>D-{daysUntilConference}</strong></div><span>CONFERENCE COUNTDOWN</span><h2>{conferenceConfig.koreanTitle}</h2><p className="countdown-copy"><strong>학술대회가 {daysUntilConference}일 남았습니다.</strong><span>첫 행사일 프로그램을 미리 살펴보세요.</span></p><button type="button" onClick={showFirstDayProgram}>첫 행사일 프로그램 보기</button></section>}
