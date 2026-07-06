@@ -90,7 +90,7 @@ body{font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
 
 /* iOS Safari zooms the page when a focused form control renders below 16px. */
 @media(max-width:760px){
-  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea,select{font-size:16px}
+  :where(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea,select){font-size:16px!important}
   .manual-time-controls label{flex-basis:46px}
   .manual-time-controls input{width:46px}
 }
@@ -117,3 +117,7 @@ body{font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-ser
   .hero-today .hero-title-block small{font-size:13px}
   .hero-today .conference-tagline{font-size:12px}
 }
+
+/* Keep mobile search focus stable while the on-screen keyboard resizes the viewport. */
+.search-screen .search-wrap{position:relative;top:auto;touch-action:manipulation}
+.search-screen .search{font-size:17px!important;touch-action:manipulation;-webkit-appearance:none;appearance:none}

@@ -158,7 +158,7 @@ export default function Home() {
     if (id === 'today') url.searchParams.delete('tab');
     else url.searchParams.set('tab', id);
     window.history.replaceState(null, '', `${url.pathname}${url.search}`);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
   const runRecentSearch = (value: string) => {
     setQuery(value);
