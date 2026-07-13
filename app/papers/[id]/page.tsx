@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import OriginalPageViewer from '@/components/OriginalPageViewer';
 import PaperActions from '@/components/PaperActions';
 import PresentationBadge from '@/components/PresentationBadge';
-import { dayLabel, papers, sessions, speakers, venues } from '@/lib/conference';
+import { dayLabel, formatSessionTitle, papers, sessions, speakers, venues } from '@/lib/conference';
 
 export function generateStaticParams() {
   return papers.map((p) => ({ id: p.id }));
@@ -106,10 +106,10 @@ export default async function PaperDetail({
             <dd>
               {session ? (
                 <Link className="text-link" href={`/sessions/${session.id}`}>
-                  {session.title} ›
+                  {formatSessionTitle(session.title)} ›
                 </Link>
               ) : (
-                paper.session
+                formatSessionTitle(paper.session)
               )}
             </dd>
           </div>

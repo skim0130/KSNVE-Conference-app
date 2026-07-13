@@ -101,3 +101,5 @@ export const dayLabel = (date: string) => {
   };
   return labels[date] ?? date;
 };
+
+export const formatSessionTitle = (title: string) => title.replace(/^(기획|부문|특별)\s+/, '[$1] ');
